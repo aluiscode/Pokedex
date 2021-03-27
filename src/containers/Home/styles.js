@@ -26,6 +26,8 @@ export const SearchContainer = styled(generalGridContainer)`
 
 export const PokemonsContainer = styled(generalGridContainer)`
   grid-area: pokemons;
+  height: calc(100% - 20px);
+  padding: 10px;
 `
 
 export const PokedexContainer = styled(generalGridContainer)`
