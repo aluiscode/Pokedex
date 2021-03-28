@@ -28,6 +28,8 @@ export const PokemonsContainer = styled(generalGridContainer)`
   grid-area: pokemons;
   height: calc(100% - 20px);
   padding: 10px;
+
+  overflow: hidden;
 `
 
 export const PokedexContainer = styled(generalGridContainer)`

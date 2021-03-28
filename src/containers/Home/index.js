@@ -8,7 +8,7 @@ import {
 
 // Components
 import { Search } from '../../components/Search'
-import { ListOfPokemons } from '../../components/ListtOfPokemons'
+import { ListOfPokemons } from '../../components/ListOfPokemons'
 
 export const Home = () => {
   return (
