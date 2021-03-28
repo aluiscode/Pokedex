@@ -6,6 +6,7 @@ export const AppContextProvider = ({ children }) => {
   const [pokemons, setPokemons] = useState([])
   const [poketPokemon, setPoketPokemon] = useState(null)
   const [offset, setOffset] = useState(0)
+  const [filteredPokemons, setFilteredPokemons] = useState([])
 
   const addPokemons = payload => {
     setPokemons(prev => [...new Set([...prev, ...payload])])
@@ -19,6 +20,10 @@ export const AppContextProvider = ({ children }) => {
     setOffset(offset + 20)
   }
 
+  const changeFilteredPokemons = (payload) => {
+    setFilteredPokemons(payload)
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -27,7 +32,9 @@ export const AppContextProvider = ({ children }) => {
         poketPokemon,
         addPoketPokemon,
         offset,
-        addOffset
+        addOffset,
+        filteredPokemons,
+        changeFilteredPokemons
       }}
       >
       {children}

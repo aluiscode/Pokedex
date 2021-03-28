@@ -1,5 +1,5 @@
 /* eslint-disable array-callback-return */
-import React, { useRef, useCallback } from 'react'
+import React, { useState, useRef, useCallback } from 'react'
 import {
   ListOfPokemonsContainer
 } from './styles'
@@ -17,7 +17,7 @@ import { usePokemons } from '../../hooks/usePokemons'
 import { getPokemons } from '../../services/pokemons'
 
 export const ListOfPokemons = () => {
-  const { pokemons, addPokemons, offset, addOffset } = useAppContext()
+  const { pokemons, addPokemons, offset, addOffset, filteredPokemons } = useAppContext()
   const { loading } = usePokemons()
   const observer = useRef()
   const lastPokemonRef = useCallback((node) => {
@@ -44,7 +44,7 @@ export const ListOfPokemons = () => {
                   ? <EmptyView/>
                   : <>
                     {
-                      pokemons.map((pokemon, index) => {
+                      filteredPokemons.map((pokemon, index) => {
                         if (pokemons.length === index + 1) {
                           return <PokemonCard
                             ref ={lastPokemonRef}

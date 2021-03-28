@@ -2,7 +2,6 @@ import axios from 'axios'
 import { ENDPOINTS } from '../constants'
 
 export const getPokemons = async (offset) => {
-  console.log(`${ENDPOINTS.POKEMONS}?offset=${offset}&limit=20`)
   const response = await axios.get(`${ENDPOINTS.POKEMONS}?offset=${offset}&limit=20`)
 
   const Pokemons = response.data.results.map(pokemon => getPokemon(pokemon.url))
