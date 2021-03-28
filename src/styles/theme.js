@@ -6,6 +6,7 @@ export const theme = {
     primary: '#DC0A2D',
     secoundary: '#28AAFD',
     white: '#DEDEDE',
-    dark: '#232323'
+    dark: '#232323',
+    gray: '#4F5353'
   }
 }

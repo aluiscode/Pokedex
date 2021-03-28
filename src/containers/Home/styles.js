@@ -5,7 +5,7 @@ export const HomeContainer = styled.main`
   height: 100%;
   display: grid;
   grid-template-columns: 65% 35%;
-  grid-template-rows: 60px 1fr;
+  grid-template-rows: 80px 1fr;
   grid-template-areas:  "search   pokedex"
                         "pokemons pokedex";
 

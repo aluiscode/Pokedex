@@ -15,12 +15,29 @@ export const ListOfPokemons = () => {
   const { pokemons } = useAppContext()
   const { loading, error } = usePokemons()
 
+  if (loading) {
+    <ListOfPokemonsContainer>
+      <h1>Loading...</h1>
+    </ListOfPokemonsContainer>
+  }
+
+  if (pokemons.length === 0) {
+    return (
+      <ListOfPokemonsContainer>
+        <EmptyView/>
+      </ListOfPokemonsContainer>
+    )
+  }
+
   return (
     <ListOfPokemonsContainer>
       {
-        pokemons.length === 0
-          ? <EmptyView/>
-          : pokemons.map((pokemon, i) => <PokemonCard key={i} />)
+        pokemons.map((pokemon) =>
+          <PokemonCard
+            key={`${pokemon.id}.${pokemon.name}`}
+            name={pokemon.name}
+            image={pokemon.sprites.front_default}
+          />)
       }
     </ListOfPokemonsContainer>
   )

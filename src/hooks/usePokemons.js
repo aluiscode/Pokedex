@@ -11,9 +11,16 @@ export const usePokemons = () => {
   const [next, setNext] = useState(null)
 
   useEffect(async () => {
-    const res = await getPokemons(next)
-    setNext(res.next)
-    addPokemons(res.results)
+    setLoading(true)
+    setError(null)
+
+    try {
+      const res = await getPokemons(next)
+      setNext(res.next)
+      addPokemons(res.results)
+    } catch (error) {
+      setError(error)
+    }
   }, [])
 
   return { loading, error }
