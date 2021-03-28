@@ -9,7 +9,7 @@ export const HomeContainer = styled.main`
   grid-template-areas:  "search   pokedex"
                         "pokemons pokedex";
 
-  background: ${({ theme }) => theme.background.dark}
+  background: ${({ theme }) => theme.background.dark};
 `
 
 const generalGridContainer = styled.section`
@@ -22,6 +22,7 @@ const generalGridContainer = styled.section`
 
 export const SearchContainer = styled(generalGridContainer)`
   grid-area: search;
+  padding: 10px;
 `
 
 export const PokemonsContainer = styled(generalGridContainer)`

@@ -9,6 +9,7 @@ import {
 // Components
 import { Search } from '../../components/Search'
 import { ListOfPokemons } from '../../components/ListOfPokemons'
+import { Pokedex } from '../../components/Pokedex'
 
 export const Home = () => {
   return (
@@ -20,7 +21,7 @@ export const Home = () => {
         <ListOfPokemons/>
       </PokemonsContainer>
       <PokedexContainer>
-        {}
+        <Pokedex/>
       </PokedexContainer>
     </HomeContainer>
   )
