@@ -5,21 +5,22 @@ import { useAppContext } from './useAppContext'
 import { getPokemons } from '../services/pokemons'
 
 export const usePokemons = () => {
-  const { addPokemons, addPoketPokemon } = useAppContext()
+  const { addPokemons, addPoketPokemon, addOffset } = useAppContext()
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [next, setNext] = useState(null)
 
   useEffect(async () => {
     setLoading(true)
     setError(null)
 
     try {
-      const res = await getPokemons(next)
-      setNext(res.next)
+      const res = await getPokemons()
       addPokemons(res.results)
       addPoketPokemon(res.results[0])
+      addOffset()
+      setLoading(false)
     } catch (error) {
+      setLoading(false)
       setError(error)
     }
   }, [])

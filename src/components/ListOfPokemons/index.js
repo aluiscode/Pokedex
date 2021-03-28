@@ -6,37 +6,36 @@ import {
 // Components
 import { EmptyView } from '../EmptyView'
 import { PokemonCard } from '../PokemonCard'
+import { Loader } from '../Loader'
 
 // Hooks
 import { useAppContext } from '../../hooks/useAppContext'
 import { usePokemons } from '../../hooks/usePokemons'
+import { useInfiniteScroll } from '../../hooks/useInfiniteScroll'
 
 export const ListOfPokemons = () => {
   const { pokemons } = useAppContext()
-  const { loading, error } = usePokemons()
-
-  if (loading) {
-    <ListOfPokemonsContainer>
-      <h1>Loading...</h1>
-    </ListOfPokemonsContainer>
-  }
-
-  if (pokemons.length === 0) {
-    return (
-      <ListOfPokemonsContainer>
-        <EmptyView/>
-      </ListOfPokemonsContainer>
-    )
-  }
+  const { loading } = usePokemons()
 
   return (
     <ListOfPokemonsContainer>
       {
-        pokemons.map((pokemon) =>
-          <PokemonCard
-            key={`${pokemon.id}.${pokemon.name}`}
-            pokemon={pokemon}
-          />)
+        loading
+          ? <Loader/>
+          : <>
+              {
+                pokemons.length === 0
+                  ? <EmptyView/>
+                  : <>
+                    { pokemons.map((pokemon) =>
+                        <PokemonCard
+                          key={`${pokemon.id}.${pokemon.name}`}
+                          pokemon={pokemon}
+                        />)
+                    }
+                    </>
+              }
+            </>
       }
     </ListOfPokemonsContainer>
   )

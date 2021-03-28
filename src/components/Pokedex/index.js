@@ -17,6 +17,9 @@ import {
   Value
 } from './styles'
 
+// Components
+import { Loader } from '../Loader'
+
 // Hook
 import { useAppContext } from '../../hooks/useAppContext'
 
@@ -33,7 +36,7 @@ export const Pokedex = () => {
         <Camera/>
       </CameraPokedex>
       <ScreenContainer>
-        Loading...
+        <Loader/>
       </ScreenContainer>
     </PokedexContainer>
     )

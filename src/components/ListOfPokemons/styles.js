@@ -19,3 +19,8 @@ export const ListOfPokemonsContainer = styled.section`
     margin-left: 10px;
   }
 `
+
+export const ObserverElement = styled.div`
+  width: 100%;
+  height: 20px;
+`
