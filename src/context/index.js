@@ -8,7 +8,7 @@ export const AppContextProvider = ({ children }) => {
   const [offset, setOffset] = useState(0)
 
   const addPokemons = payload => {
-    setPokemons(prev => [...prev, ...payload])
+    setPokemons(prev => [...new Set([...prev, ...payload])])
   }
 
   const addPoketPokemon = payload => {

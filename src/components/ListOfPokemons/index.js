@@ -1,4 +1,5 @@
-import React from 'react'
+/* eslint-disable array-callback-return */
+import React, { useRef, useCallback } from 'react'
 import {
   ListOfPokemonsContainer
 } from './styles'
@@ -11,11 +12,26 @@ import { Loader } from '../Loader'
 // Hooks
 import { useAppContext } from '../../hooks/useAppContext'
 import { usePokemons } from '../../hooks/usePokemons'
-import { useInfiniteScroll } from '../../hooks/useInfiniteScroll'
+
+// Import service
+import { getPokemons } from '../../services/pokemons'
 
 export const ListOfPokemons = () => {
-  const { pokemons } = useAppContext()
+  const { pokemons, addPokemons, offset, addOffset } = useAppContext()
   const { loading } = usePokemons()
+  const observer = useRef()
+  const lastPokemonRef = useCallback((node) => {
+    if (loading) return
+    if (observer.current) observer.current.disconnect()
+    observer.current = new window.IntersectionObserver(async (entries) => {
+      if (entries[0].isIntersecting) {
+        const res = await getPokemons(offset)
+        addPokemons(res.results)
+        addOffset()
+      }
+    })
+    if (node) observer.current.observe(node)
+  }, [loading, pokemons, offset])
 
   return (
     <ListOfPokemonsContainer>
@@ -27,11 +43,22 @@ export const ListOfPokemons = () => {
                 pokemons.length === 0
                   ? <EmptyView/>
                   : <>
-                    { pokemons.map((pokemon) =>
-                        <PokemonCard
-                          key={`${pokemon.id}.${pokemon.name}`}
-                          pokemon={pokemon}
-                        />)
+                    {
+                      pokemons.map((pokemon, index) => {
+                        if (pokemons.length === index + 1) {
+                          return <PokemonCard
+                            ref ={lastPokemonRef}
+                            key={`${pokemon.id}.${pokemon.name}`}
+                            pokemon={pokemon}
+                          />
+                        } else {
+                          return <PokemonCard
+                            key={`${pokemon.id}.${pokemon.name}`}
+                            pokemon={pokemon}
+                          />
+                        }
+                      }
+                      )
                     }
                     </>
               }

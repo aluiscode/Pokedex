@@ -1,5 +1,6 @@
+/* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, { forwardRef } from 'react'
 import {
   PokemonCardContainer,
   Image,
@@ -9,13 +10,13 @@ import {
 // Hook
 import { useAppContext } from '../../hooks/useAppContext'
 
-export const PokemonCard = ({ pokemon }) => {
+export const PokemonCard = forwardRef(({ pokemon }, ref) => {
   const { addPoketPokemon } = useAppContext()
 
   return (
-    <PokemonCardContainer onClick= {() => addPoketPokemon(pokemon)}>
+    <PokemonCardContainer ref={ref} onClick= {() => addPoketPokemon(pokemon)}>
       <Image src={pokemon.sprites.front_default}/>
       <MainName>{pokemon.name}</MainName>
     </PokemonCardContainer>
   )
-}
+})
