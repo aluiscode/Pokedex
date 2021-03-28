@@ -3,6 +3,10 @@ import {
   ListOfPokemonsContainer
 } from './styles'
 
+// Components
+import { EmptyView } from '../EmptyView'
+
+// Hooks
 import { useAppContext } from '../../hooks/useAppContext'
 
 export const ListOfPokemons = () => {
@@ -10,7 +14,9 @@ export const ListOfPokemons = () => {
 
   return (
     <ListOfPokemonsContainer>
-
+      {
+        pokemons.length === 0 && <EmptyView/>
+      }
     </ListOfPokemonsContainer>
   )
 }
