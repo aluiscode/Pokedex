@@ -6,11 +6,16 @@ import {
   MainName
 } from './styles'
 
-export const PokemonCard = ({ name, image }) => {
+// Hook
+import { useAppContext } from '../../hooks/useAppContext'
+
+export const PokemonCard = ({ pokemon }) => {
+  const { addPoketPokemon } = useAppContext()
+
   return (
-    <PokemonCardContainer>
-      <Image src={image}/>
-      <MainName>{name}</MainName>
+    <PokemonCardContainer onClick= {() => addPoketPokemon(pokemon)}>
+      <Image src={pokemon.sprites.front_default}/>
+      <MainName>{pokemon.name}</MainName>
     </PokemonCardContainer>
   )
 }

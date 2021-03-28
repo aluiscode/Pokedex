@@ -9,6 +9,12 @@ export const PokemonCardContainer = styled.article`
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.gray};
   border-radius: 10px;
+
+  border: 1px solid ${({ theme }) => theme.colors.dark};
+
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.colors.secoundary};
+  }
 `
 
 export const Image = styled.img``

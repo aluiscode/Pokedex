@@ -35,8 +35,7 @@ export const ListOfPokemons = () => {
         pokemons.map((pokemon) =>
           <PokemonCard
             key={`${pokemon.id}.${pokemon.name}`}
-            name={pokemon.name}
-            image={pokemon.sprites.front_default}
+            pokemon={pokemon}
           />)
       }
     </ListOfPokemonsContainer>
